@@ -1,0 +1,66 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.laxis-tech/laxis-mcp",
+  "title": "Laxis",
+  "description": "Search and read your Laxis meeting transcripts, summaries, and participants from Claude and other AI tools.",
+  "icons": [
+    {
+      "src": "https://www.laxis.com/logos/laxis.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
+  "websiteUrl": "https://www.laxis.com",
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "documentation": "https://github.com/laxis-tech/laxis-mcp/blob/main/README.md",
+      "publisher": "Laxis",
+      "keywords": [
+        "laxis",
+        "meetings",
+        "transcripts",
+        "summaries",
+        "recordings",
+        "notetaker",
+        "sales",
+        "rag",
+        "mcp"
+      ],
+      "examples": [
+        {
+          "name": "Recall meeting decisions",
+          "description": "Search your transcripts to find what was decided, agreed, or committed across past calls."
+        },
+        {
+          "name": "Catch up on recent meetings",
+          "description": "List your recent meetings and summarize the key points and action items."
+        },
+        {
+          "name": "Pull a full transcript",
+          "description": "Retrieve the participants, AI summary, and full timestamped transcript for a specific meeting."
+        }
+      ]
+    }
+  },
+  "repository": {
+    "url": "https://github.com/laxis-tech/laxis-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://app.laxis.tech/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Laxis personal API key as a Bearer token (e.g. 'Bearer laxis_...'). Generate one at app.laxis.tech -> Settings -> Claude (MCP).",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

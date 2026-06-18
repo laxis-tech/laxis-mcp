@@ -1,0 +1,44 @@
+name: Bug report
+description: Something isn't working when connecting Laxis to your AI client.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report! **Never paste your API key (`laxis_…`) or meeting content here.**
+  - type: dropdown
+    id: client
+    attributes:
+      label: MCP client
+      options:
+        - Claude Code
+        - Claude Desktop
+        - claude.ai (web)
+        - Cursor
+        - VS Code
+        - Windsurf
+        - Other (specify below)
+    validations:
+      required: true
+  - type: input
+    id: client-version
+    attributes:
+      label: Client version
+      placeholder: "e.g. VS Code 1.101.2"
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead? Include any error messages (redact secrets).
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Configuration used
+      description: The MCP config block you used, with the key redacted as `laxis_REDACTED`.
+      render: json
+    validations:
+      required: false

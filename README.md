@@ -14,6 +14,30 @@ context your AI can reason over.
 > for you. You just add one URL and your personal API key to your AI client. There
 > is no local binary, Docker image, or `npm` package to manage.
 
+## About Laxis
+
+[Laxis](https://www.laxis.com/ai-meeting-assistant/) is an AI meeting assistant that
+**records, transcribes, and summarizes every conversation in real time** — so your
+team can stay present in the discussion instead of scrambling to take notes.
+
+- **Capture every meeting.** Laxis joins your Zoom, Google Meet, Microsoft Teams,
+  and Webex calls automatically through calendar integration — with a meeting bot
+  or bot-free, zero-footprint capture — and also handles in-person conversations
+  and audio uploads.
+- **Accurate, speaker-labeled transcripts.** Speech-to-text recognizes each
+  participant, so you always know who said what, across **40+ languages**.
+- **AI summaries and insights.** Laxis automatically pulls out action items, key
+  decisions, and customer requirements, and turns raw transcripts into polished
+  notes using **50+ professional templates**.
+- **Ask your meeting history anything.** Search across every past conversation to
+  recall facts, trends, and forgotten decisions.
+- **Repurpose in one click.** Turn a meeting into a follow-up email, blog post,
+  project requirements doc, or CRM update the moment the call ends.
+
+Everything Laxis records becomes a searchable knowledge base of your conversations.
+**This MCP server opens that knowledge base to Claude and other AI tools** — letting
+your assistant reason directly over the meetings you've already captured.
+
 ## Use cases
 
 - **Recall decisions and commitments** — *"What did we agree on pricing in my last call with Acme?"*

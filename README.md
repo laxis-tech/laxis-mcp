@@ -4,8 +4,9 @@
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Laxis_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Laxis&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.laxis.tech%2Fmcp%22%2C%22headers%22%3A%7B%22Authorization%22%3A%22Bearer%20%24%7Binput%3Alaxis_pat%7D%22%7D%7D)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-The **Laxis MCP Server** connects [Laxis](https://www.laxis.com) to Claude and other
-AI tools through the [Model Context Protocol](https://modelcontextprotocol.io).
+The **Laxis MCP Server** connects [Laxis](https://www.laxis.com) — the AI meeting
+note taker and voice dictation tool for professionals — to Claude and other AI
+tools through the [Model Context Protocol](https://modelcontextprotocol.io).
 Your assistant can **search and read your meeting transcripts, summaries, and
 participants** directly in chat — turning every conversation you've recorded into
 context your AI can reason over.
@@ -13,6 +14,46 @@ context your AI can reason over.
 > **Remote, hosted server — nothing to install or run.** Laxis hosts the server
 > for you. You just add one URL and your personal API key to your AI client. There
 > is no local binary, Docker image, or `npm` package to manage.
+
+## What is Laxis?
+
+[Laxis](https://www.laxis.com) is the next-generation **AI meeting note taker and
+voice dictation tool** built for professionals. It records, transcribes, and
+summarizes any conversation directly from your computer — no "bot" ever joins the
+call — and works seamlessly with Zoom, Google Meet, Microsoft Teams, Webex, Slack
+Huddles, and more.
+
+- 🎥 **Botless meeting recording & transcription** — record and instantly
+  transcribe any meeting straight from your computer for a private, professional,
+  and seamless experience. High-accuracy AI handles multiple speakers and
+  technical jargon with ease.
+- 🎙️ **AI dictation — voice to text, anywhere** — speak instead of type. Laxis
+  turns your voice into clean, perfectly formatted text up to 3× faster than
+  typing, automatically removing filler words ("um," "uh") and adding punctuation.
+  Perfect for drafting emails, notes, and messages by voice.
+- 🌐 **Real-time translation** — Laxis transcribes and translates conversations
+  live, so you can follow and capture cross-language discussions as they happen.
+- ✍️ **Personalized AI summaries** — don't just get a transcript. Laxis combines
+  your own real-time notes with the meeting transcript to generate insights that
+  reflect your specific context and priorities.
+- 📊 **50+ professional report templates** — turn hours of conversation into
+  structured documentation in seconds, including Sales Discovery, Project
+  Updates, User Interviews, and Candidate Screenings.
+- ✅ **Automated action items** — Laxis automatically identifies and extracts
+  tasks, ensuring nothing falls through the cracks.
+- 💬 **Real-time AI copilot** — chat with Laxis before, during, and after
+  meetings to get real-time insight.
+- 🔄 **Seamless CRM & tool integration** — automatically sync meeting insights,
+  action items, and customer data directly into Salesforce, HubSpot, Jira, Slack,
+  and your favorite productivity tools.
+- 🔒 **Enterprise-grade security** — your data is encrypted and private,
+  protected to the highest industry standards.
+
+Sales teams use Laxis to update their CRM instantly and never miss a customer
+requirement; product managers turn user interviews into actionable PRDs;
+consultants deliver standardized client reports; recruiters capture every detail
+of candidate interviews. **This MCP server brings all of that recorded knowledge
+to your AI assistant.**
 
 ## Use cases
 

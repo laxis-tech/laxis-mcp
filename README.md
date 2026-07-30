@@ -1,7 +1,7 @@
 # Laxis MCP Server
 
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=Laxis&config=eyJ1cmwiOiJodHRwczovL2FwcC5sYXhpcy50ZWNoL21jcCIsImhlYWRlcnMiOnsiQXV0aG9yaXphdGlvbiI6IkJlYXJlciBZT1VSX0tFWSJ9fQ==)
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Laxis_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Laxis&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.laxis.tech%2Fmcp%22%2C%22headers%22%3A%7B%22Authorization%22%3A%22Bearer%20%24%7Binput%3Alaxis_pat%7D%22%7D%7D)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=Laxis&config=eyJ1cmwiOiJodHRwczovL2FwcC5sYXhpcy50ZWNoL21jcCJ9)
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Laxis_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Laxis&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.laxis.tech%2Fmcp%22%7D)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 The **Laxis MCP Server** connects [Laxis](https://www.laxis.com) — the AI meeting
@@ -12,8 +12,9 @@ participants** directly in chat — turning every conversation you've recorded i
 context your AI can reason over.
 
 > **Remote, hosted server — nothing to install or run.** Laxis hosts the server
-> for you. You just add one URL and your personal API key to your AI client. There
-> is no local binary, Docker image, or `npm` package to manage.
+> for you. You add one URL to your AI client and **sign in with your Laxis
+> account** — no local binary, Docker image, or `npm` package, and no API key to
+> copy or paste.
 
 ## What is Laxis?
 
@@ -75,23 +76,13 @@ calls of its own, or touches data that isn't yours.
 | `get_meeting` | Full details for one meeting — participants, AI summary points, and metadata. |
 | `get_transcript` | The full, paged transcript text, formatted as `[m:ss] Speaker: text`. |
 
-## Prerequisites
+## How you connect
 
-1. A **Laxis account** — sign up at [app.laxis.tech](https://app.laxis.tech).
-2. A **personal API key** (see below).
-3. An MCP client that supports **remote servers with a custom `Authorization`
-   header** — e.g. Claude Code, Cursor, VS Code, or Windsurf. (See
-   [Claude Desktop & claude.ai](#claude-desktop--claudeai-web) for those clients.)
-
-## Get your API key
-
-1. Go to **[app.laxis.tech](https://app.laxis.tech) → Settings → Claude (MCP)**.
-2. Click **Generate API key**. Copy the value — it looks like `laxis_xxxxxxxx…`.
-
-> Treat this key like a password: it grants read access to your meetings.
-> **Regenerating** the key immediately invalidates the previous one (and any
-> Zapier zaps that share it), so update your connectors afterward. The same screen
-> shows a ready-to-paste `claude mcp add` command for Claude Code.
+You only need a **[Laxis account](https://app.laxis.tech)**. Add the endpoint to
+your AI client and it will open your browser to **sign in with Laxis** (OAuth 2.1
++ PKCE) the first time it connects — approve once and you're done. Access tokens
+refresh automatically, and you can revoke a client's access anytime from
+**Laxis → Settings → Claude (MCP)**.
 
 The connection endpoint is always:
 
@@ -99,41 +90,58 @@ The connection endpoint is always:
 https://app.laxis.tech/mcp
 ```
 
-with the header:
-
-```
-Authorization: Bearer YOUR_KEY
-```
+> **We no longer recommend personal API keys.** Signing in with OAuth is more
+> secure (no long-lived secret to copy, store, or leak) and just as quick. API
+> keys remain available only for tools that can't sign in interactively — see
+> [Connecting without a browser](#connecting-without-a-browser-api-key).
 
 ## Install
 
-Replace `YOUR_KEY` below with the key you generated.
+Pick your client. In every case you connect with the URL above and sign in with
+Laxis when prompted — there's no key to paste.
 
-### Claude Code (recommended)
+### Claude Desktop — one-click MCP Bundle (recommended)
+
+1. Download the latest **`laxis.mcpb`** from the
+   [releases page](https://github.com/laxis-tech/laxis-mcp/releases).
+2. Open it with Claude Desktop (double-click, or drag into **Settings →
+   Extensions**) and click **Install**.
+3. The first time Claude uses a Laxis tool, your browser opens to **sign in
+   with Laxis**. Approve, close the tab, done.
+
+The bundle is a thin local bridge to the hosted server — tools live server-side,
+so new Laxis capabilities appear without re-downloading it. Source and developer
+docs live in [`mcpb/`](mcpb/).
+
+### claude.ai (web) & Claude Desktop — custom connector
+
+In claude.ai or Claude Desktop go to **Settings → Connectors → Add custom
+connector**, paste `https://app.laxis.tech/mcp`, and complete the "sign in with
+Laxis" flow. Use either the bundle *or* the connector — installing both would
+show duplicate tools.
+
+### Claude Code
 
 ```bash
-claude mcp add Laxis --transport http https://app.laxis.tech/mcp \
-  --header "Authorization: Bearer YOUR_KEY"
+claude mcp add Laxis --transport http https://app.laxis.tech/mcp
 ```
 
-Then ask Claude something like *"Use Laxis to summarize my last meeting."*
+Then run `/mcp` in Claude Code and choose **Authenticate** to sign in with
+Laxis. Ask something like *"Use Laxis to summarize my last meeting."*
 
 ### Cursor
 
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=Laxis&config=eyJ1cmwiOiJodHRwczovL2FwcC5sYXhpcy50ZWNoL21jcCIsImhlYWRlcnMiOnsiQXV0aG9yaXphdGlvbiI6IkJlYXJlciBZT1VSX0tFWSJ9fQ==)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=Laxis&config=eyJ1cmwiOiJodHRwczovL2FwcC5sYXhpcy50ZWNoL21jcCJ9)
 
-The one-click button adds the server with a placeholder key — after installing,
-open **Cursor → Settings → MCP** (or `~/.cursor/mcp.json`) and replace
-`YOUR_KEY` with your real key. Or configure it manually:
+The one-click button adds the server; open **Cursor → Settings → MCP** and click
+**Sign in** (or **Needs login**) next to Laxis to authorize. Or configure it
+manually in `~/.cursor/mcp.json`:
 
 ```json
 {
   "mcpServers": {
     "Laxis": {
-      "url": "https://app.laxis.tech/mcp",
-      "headers": {
-        "Authorization": "Bearer YOUR_KEY"
-      }
+      "url": "https://app.laxis.tech/mcp"
     }
   }
 }
@@ -141,29 +149,17 @@ open **Cursor → Settings → MCP** (or `~/.cursor/mcp.json`) and replace
 
 ### VS Code
 
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Laxis_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Laxis&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.laxis.tech%2Fmcp%22%2C%22headers%22%3A%7B%22Authorization%22%3A%22Bearer%20%24%7Binput%3Alaxis_pat%7D%22%7D%7D)
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Laxis_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Laxis&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.laxis.tech%2Fmcp%22%7D)
 
-Requires VS Code 1.101+. You'll be prompted for your API key on first use. To
-configure manually, add a `.vscode/mcp.json` to your workspace (this version
-prompts for the key and stores it securely instead of hard-coding it):
+Requires VS Code 1.101+. After installing, VS Code prompts you to sign in with
+Laxis on first use. To configure manually, add a `.vscode/mcp.json`:
 
 ```json
 {
-  "inputs": [
-    {
-      "type": "promptString",
-      "id": "laxis_pat",
-      "description": "Laxis personal API key",
-      "password": true
-    }
-  ],
   "servers": {
     "Laxis": {
       "type": "http",
-      "url": "https://app.laxis.tech/mcp",
-      "headers": {
-        "Authorization": "Bearer ${input:laxis_pat}"
-      }
+      "url": "https://app.laxis.tech/mcp"
     }
   }
 }
@@ -171,28 +167,44 @@ prompts for the key and stores it securely instead of hard-coding it):
 
 ### Windsurf
 
-Add to `~/.codeium/windsurf/mcp_config.json`:
+Add to `~/.codeium/windsurf/mcp_config.json`, then authorize when prompted:
 
 ```json
 {
   "mcpServers": {
     "Laxis": {
-      "serverUrl": "https://app.laxis.tech/mcp",
-      "headers": {
-        "Authorization": "Bearer YOUR_KEY"
-      }
+      "serverUrl": "https://app.laxis.tech/mcp"
     }
   }
 }
 ```
 
-### Claude Desktop & claude.ai (web)
+### Other clients
 
-Native one-click **custom connectors** in Claude Desktop and on claude.ai use
-OAuth, which is **coming soon** for Laxis (see [Roadmap](#roadmap)). Until then,
-connect Claude Desktop with the [`mcp-remote`](https://www.npmjs.com/package/mcp-remote)
-bridge (requires Node.js). Edit **Settings → Developer → Edit Config**
-(`claude_desktop_config.json`):
+Any client that speaks **Streamable HTTP** to a remote MCP server and supports
+the MCP OAuth flow works. Point it at:
+
+- **URL:** `https://app.laxis.tech/mcp`
+- **Transport:** Streamable HTTP
+- **Auth:** OAuth 2.1 (the client discovers the sign-in flow automatically)
+
+## Connecting without a browser (API key)
+
+> **Not recommended.** Use this only for tools that can't complete an
+> interactive OAuth sign-in — headless scripts, CI, or automations such as
+> Zapier. A personal API key is a long-lived secret: anyone who has it can read
+> your meetings until you revoke it.
+
+1. In Laxis, go to **Settings → Claude (MCP) → Advanced** and generate a
+   personal API key (`laxis_…`).
+2. Send it as a bearer token on every request:
+
+   ```
+   Authorization: Bearer laxis_…
+   ```
+
+For a desktop client that lacks native OAuth, you can bridge with
+[`mcp-remote`](https://www.npmjs.com/package/mcp-remote) and the header:
 
 ```json
 {
@@ -202,40 +214,35 @@ bridge (requires Node.js). Edit **Settings → Developer → Edit Config**
       "args": [
         "-y", "mcp-remote",
         "https://app.laxis.tech/mcp",
-        "--header", "Authorization: Bearer YOUR_KEY"
+        "--header", "Authorization: Bearer laxis_…"
       ]
     }
   }
 }
 ```
 
-Restart Claude Desktop after saving.
-
-### Other clients
-
-Any client that speaks **Streamable HTTP** to a remote MCP server works. Point it at:
-
-- **URL:** `https://app.laxis.tech/mcp`
-- **Transport:** Streamable HTTP
-- **Header:** `Authorization: Bearer YOUR_KEY`
+Treat the key like a password. **Regenerating** it immediately invalidates the
+previous one (and any automations that share it), so update those afterward.
 
 ## How it works
 
 ```
-Your AI client ──(Authorization: Bearer laxis_…)──▶ Laxis MCP Server ──▶ Laxis API
+Your AI client ──OAuth sign-in──▶ Laxis (authorize + consent)
+       │
+       └──Bearer access token──▶ Laxis MCP Server ──▶ Laxis API ──▶ your meetings
 ```
 
-The server is a thin, **retrieval-only** proxy in front of the Laxis API. It holds
-no signing keys: it exchanges your personal API key for a short-lived, user-scoped
-token, fetches the requested meeting data, and returns raw snippets. Your AI client
-does all the reasoning and answer-writing from those snippets. You only ever see
-your own meetings, and access stops the moment you regenerate or delete the key.
+The server is a thin, **retrieval-only** proxy in front of the Laxis API. It
+validates your OAuth access token, exchanges it for a short-lived, user-scoped
+upstream token (it never forwards your client's token to the API), fetches the
+requested meeting data, and returns raw snippets. Your AI client does all the
+reasoning and answer-writing. You only ever see your own meetings, and access
+stops the moment you revoke the connection (or, in API-key mode, the key).
 
 ## Roadmap
 
-- **OAuth 2.1 connector** — one-click "Add custom connector" support for
-  claude.ai (web) and Claude Desktop, with no API key to copy/paste.
-- Listing on public MCP registries and directories for one-click discovery.
+- Listing in Anthropic's connector and desktop-extension directories, and on
+  public MCP registries, for one-click discovery.
 
 ## Support
 

@@ -1,0 +1,52 @@
+name: mcpb-release
+
+# Release flow: bump `version` in mcpb/manifest.json + mcpb/package.json,
+# then push a tag `mcpb-v<version>`. This packs the bundle with production
+# dependencies and attaches `laxis.mcpb` to a GitHub release for the tag.
+on:
+  push:
+    tags: ["mcpb-v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: mcpb
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check tag matches manifest/package versions
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#mcpb-v}"
+          MANIFEST_VERSION="$(node -p "require('./manifest.json').version")"
+          PACKAGE_VERSION="$(node -p "require('./package.json').version")"
+          echo "tag=$TAG_VERSION manifest=$MANIFEST_VERSION package=$PACKAGE_VERSION"
+          test "$TAG_VERSION" = "$MANIFEST_VERSION"
+          test "$TAG_VERSION" = "$PACKAGE_VERSION"
+      - run: npm ci
+      - run: npm test
+      - run: npx --yes @anthropic-ai/mcpb validate manifest.json
+      - name: Pack with production dependencies only
+        run: |
+          npm prune --omit=dev
+          npx --yes @anthropic-ai/mcpb pack . laxis.mcpb
+      - name: Create GitHub release with the bundle
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Laxis MCP Bundle ${{ github.ref_name }}
+          files: mcpb/laxis.mcpb
+          body: |
+            One-click Laxis extension for Claude Desktop.
+
+            **Install:** download `laxis.mcpb`, open it with Claude Desktop
+            (or drag into Settings → Extensions), then use any Laxis tool to
+            sign in with your Laxis account.
+          generate_release_notes: true

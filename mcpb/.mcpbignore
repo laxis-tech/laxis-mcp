@@ -1,0 +1,7 @@
+# Keep the shipped bundle to runtime files only.
+test/
+scripts/
+README.md
+.mcpbignore
+*.test.js
+package-lock.json

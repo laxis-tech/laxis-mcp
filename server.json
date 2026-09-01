@@ -15,7 +15,7 @@
   "websiteUrl": "https://www.laxis.com",
   "_meta": {
     "io.modelcontextprotocol.registry/publisher-provided": {
-      "about": "Laxis is the next-generation AI meeting note taker and voice dictation tool built for professionals. It records, transcribes, and summarizes any conversation directly from your computer — no bot ever joins the call — and works seamlessly with Zoom, Google Meet, Microsoft Teams, Webex, Slack Huddles, and more. Beyond meetings, Laxis turns your voice into clean, formatted text up to 3x faster than typing, translates conversations in real time, generates personalized AI summaries and automated action items, offers 50+ professional report templates (Sales Discovery, Project Updates, User Interviews, Candidate Screenings), and syncs insights directly into Salesforce, HubSpot, Jira, Slack, and other productivity tools — all with enterprise-grade security. This MCP server gives your AI assistant read-only access to that recorded knowledge: search and read your meeting transcripts, summaries, and participants directly in chat.",
+      "about": "Laxis is the next-generation AI meeting note taker and voice dictation tool built for professionals. It records, transcribes, and summarizes any conversation directly from your computer — no bot ever joins the call — and works seamlessly with Zoom, Google Meet, Microsoft Teams, Webex, Slack Huddles, and more. Beyond meetings, Laxis turns your voice into clean, formatted text up to 3x faster than typing, translates conversations in real time, generates personalized AI summaries and automated action items, offers 50+ professional report templates (Sales Discovery, Project Updates, User Interviews, Candidate Screenings), and syncs insights directly into Salesforce, HubSpot, Jira, Slack, and other productivity tools — all with enterprise-grade security. This MCP server gives your AI assistant read-only access to that recorded knowledge: search and read your meeting transcripts, summaries, and participants directly in chat. Connecting takes one URL and a browser sign-in with your Laxis account (OAuth 2.1 + PKCE) — there is no API key to copy or paste, and you can revoke a client's access anytime from Laxis Settings.",
       "documentation": "https://github.com/laxis-tech/laxis-mcp/blob/main/README.md",
       "publisher": "Laxis",
       "keywords": [
@@ -59,19 +59,11 @@
     "url": "https://github.com/laxis-tech/laxis-mcp",
     "source": "github"
   },
-  "version": "0.1.1",
+  "version": "0.2.0",
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://app.laxis.tech/mcp",
-      "headers": [
-        {
-          "name": "Authorization",
-          "description": "Laxis personal API key as a Bearer token (e.g. 'Bearer laxis_...'). Generate one at app.laxis.tech -> Settings -> Claude (MCP).",
-          "isRequired": true,
-          "isSecret": true
-        }
-      ]
+      "url": "https://app.laxis.tech/mcp"
     }
   ]
 }

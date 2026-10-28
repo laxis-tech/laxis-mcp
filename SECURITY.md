@@ -18,12 +18,12 @@ We aim to acknowledge reports within a few business days.
   Treat it like a password.
 - Prefer client configs that store the key as a secret/prompted input (e.g. the
   VS Code `inputs` example in the README) over hard-coding it in a file.
-- If a key is exposed, regenerate it at **app.laxis.tech → Settings →
+- If a key is exposed, regenerate it at **app.laxis.com → Settings →
   Claude (MCP)**. Regenerating immediately invalidates the old key.
 
 ## Scope
 
 This repository contains **documentation and the MCP registry manifest only**.
-The server is hosted by Laxis at `https://app.laxis.tech/mcp`. Vulnerabilities in
+The server is hosted by Laxis at `https://app.laxis.com/mcp`. Vulnerabilities in
 the hosted service, the Laxis API, or the web app should also be reported through
 the channels above.

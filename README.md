@@ -1,7 +1,7 @@
 # Laxis MCP Server
 
 [![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=Laxis&config=eyJ1cmwiOiJodHRwczovL2FwcC5sYXhpcy50ZWNoL21jcCJ9)
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Laxis_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Laxis&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.laxis.tech%2Fmcp%22%7D)
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Laxis_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Laxis&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.laxis.com%2Fmcp%22%7D)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 The **Laxis MCP Server** connects [Laxis](https://www.laxis.com) — the AI meeting
@@ -78,7 +78,7 @@ calls of its own, or touches data that isn't yours.
 
 ## How you connect
 
-You only need a **[Laxis account](https://app.laxis.tech)**. Add the endpoint to
+You only need a **[Laxis account](https://app.laxis.com)**. Add the endpoint to
 your AI client and it will open your browser to **sign in with Laxis** (OAuth 2.1
 + PKCE) the first time it connects — approve once and you're done. Access tokens
 refresh automatically, and you can revoke a client's access anytime from
@@ -87,7 +87,7 @@ refresh automatically, and you can revoke a client's access anytime from
 The connection endpoint is always:
 
 ```
-https://app.laxis.tech/mcp
+https://app.laxis.com/mcp
 ```
 
 > **We no longer recommend personal API keys.** Signing in with OAuth is more
@@ -106,13 +106,13 @@ In Claude Desktop or on claude.ai go to **Settings → Connectors → Add custom
 connector**, paste the URL below, and complete the "sign in with Laxis" flow.
 
 ```
-https://app.laxis.tech/mcp
+https://app.laxis.com/mcp
 ```
 
 ### Claude Code
 
 ```bash
-claude mcp add Laxis --transport http https://app.laxis.tech/mcp
+claude mcp add Laxis --transport http https://app.laxis.com/mcp
 ```
 
 Then run `/mcp` in Claude Code and choose **Authenticate** to sign in with
@@ -130,7 +130,7 @@ manually in `~/.cursor/mcp.json`:
 {
   "mcpServers": {
     "Laxis": {
-      "url": "https://app.laxis.tech/mcp"
+      "url": "https://app.laxis.com/mcp"
     }
   }
 }
@@ -138,7 +138,7 @@ manually in `~/.cursor/mcp.json`:
 
 ### VS Code
 
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Laxis_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Laxis&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.laxis.tech%2Fmcp%22%7D)
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Laxis_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=Laxis&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.laxis.com%2Fmcp%22%7D)
 
 Requires VS Code 1.101+. After installing, VS Code prompts you to sign in with
 Laxis on first use. To configure manually, add a `.vscode/mcp.json`:
@@ -148,7 +148,7 @@ Laxis on first use. To configure manually, add a `.vscode/mcp.json`:
   "servers": {
     "Laxis": {
       "type": "http",
-      "url": "https://app.laxis.tech/mcp"
+      "url": "https://app.laxis.com/mcp"
     }
   }
 }
@@ -162,7 +162,7 @@ Add to `~/.codeium/windsurf/mcp_config.json`, then authorize when prompted:
 {
   "mcpServers": {
     "Laxis": {
-      "serverUrl": "https://app.laxis.tech/mcp"
+      "serverUrl": "https://app.laxis.com/mcp"
     }
   }
 }
@@ -173,7 +173,7 @@ Add to `~/.codeium/windsurf/mcp_config.json`, then authorize when prompted:
 Any client that speaks **Streamable HTTP** to a remote MCP server and supports
 the MCP OAuth flow works. Point it at:
 
-- **URL:** `https://app.laxis.tech/mcp`
+- **URL:** `https://app.laxis.com/mcp`
 - **Transport:** Streamable HTTP
 - **Auth:** OAuth 2.1 (the client discovers the sign-in flow automatically)
 
@@ -202,7 +202,7 @@ For a desktop client that lacks native OAuth, you can bridge with
       "command": "npx",
       "args": [
         "-y", "mcp-remote",
-        "https://app.laxis.tech/mcp",
+        "https://app.laxis.com/mcp",
         "--header", "Authorization: Bearer laxis_…"
       ]
     }

@@ -59,11 +59,11 @@
     "url": "https://github.com/laxis-tech/laxis-mcp",
     "source": "github"
   },
-  "version": "0.2.0",
+  "version": "0.2.1",
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://app.laxis.tech/mcp"
+      "url": "https://app.laxis.com/mcp"
     }
   ]
 }

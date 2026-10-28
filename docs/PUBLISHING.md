@@ -47,11 +47,11 @@ automatically; others have a **"Submit Server"** form where you paste the repo o
 
 1. Submit `https://github.com/laxis-tech/laxis-mcp` to any directory's submit form.
 2. Confirm the install snippets they generate match the README (URL
-   `https://app.laxis.tech/mcp`, `Authorization: Bearer` header).
+   `https://app.laxis.com/mcp`, `Authorization: Bearer` header).
 
 ## Before you publish — checklist
 
-- [ ] `https://app.laxis.tech/mcp` is live in **production** (not just dev/stg).
+- [ ] `https://app.laxis.com/mcp` is live in **production** (not just dev/stg).
 - [ ] A freshly generated `laxis_…` key connects successfully from at least
       Claude Code and one GUI client (Cursor or VS Code).
 - [ ] `server.json` `version` bumped; `$schema` still current.
